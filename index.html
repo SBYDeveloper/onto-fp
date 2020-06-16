@@ -5,15 +5,17 @@
     <title>Ontotext Framework Projects Timeline</title>
   </head>
   <body>
-    <div id="visualization"/>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div id="visualization"></div>
     <script type="text/javascript">
       // https://developers.google.com/chart/interactive/docs/gallery/barchart
       // TODO: use Material bar chart, simplify loading, simplify tooltip by using role:tooltip instead of callback
-	    var scr = document.createElement("script");
-      scr.setAttribute("src",'https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["corechart"],"callback":"drawVisualization"}]}');
-      document.head.appendChild(scr);	
+      // var scr = document.createElement("script");
+      // scr.setAttribute("src",'https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["corechart"],"callback":"drawVisualization"}]}');
+      google.charts.load('current', {packages: ['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawVisualization);
       
-      function drawVisualization() {
+ function drawVisualization() {
         // To edit the data that this visualization uses: https://docs.google.com/spreadsheets/d/1qRQbDVlRXrH4g8wcgZai65Zjn7D3N1mL-rIIzUoXmlk/edit
         var query = new google.visualization.Query(
           'https://docs.google.com/spreadsheets/d/1qRQbDVlRXrH4g8wcgZai65Zjn7D3N1mL-rIIzUoXmlk/gviz/tq?range=B1:N48');
@@ -42,7 +44,7 @@
         view.setColumns([0,1,2,3]); // rest are used only for the tooltip
 
         var options = {
-          width: 660, height: 740,
+          width: 660, height: 760,
           theme: 'maximized', 
           bar: {groupWidth: "85%"},
           legend: {position: 'none'},
